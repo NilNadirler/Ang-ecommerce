@@ -1,0 +1,31 @@
+<body class="text-center">
+    <main class="form-signin">
+        <form [formGroup]="validateForm">
+
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+            <div class="form-floating">
+                <input formControlName="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label>Email address</label>
+            </div>
+            <div class="form-floating">
+                <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label >Password</label>
+            </div>
+            <div class="form-floating">
+                <input formControlName="confirmPassword" type="password" class="form-control" id="floatingPassword" placeholder="Password Confirm">
+                <label >Password Confirm</label>
+            </div>
+            <div class="form-floating">
+                <input formControlName="name" type="text" class="form-control" id="floatingPassword" placeholder="User Name">
+                <label >User Name</label>
+            </div>
+            <div class="checkbox mb-3">
+                <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="register()" >Register</button>
+        </form>
+    </main>
+</body>
