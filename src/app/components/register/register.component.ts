@@ -1,6 +1,8 @@
 import { ConstantPool } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
@@ -12,34 +14,34 @@ export class RegisterComponent {
 
   validateForm!: FormGroup;
 
-   constructor(private fb:FormBuilder, private authService:AuthServiceService){}
+   constructor(private fb:FormBuilder, private authService:AuthServiceService, 
+    private toastr:ToastrService, private router:Router ){}
 
     ngOnInit(){
       this.validateForm = this.fb.group({
         name:[null, [Validators.required]],
-        email:[null, [Validators.required]],
-        password:[null, [Validators.required, Validators.email]],
+        email:[null, [Validators.required, Validators.email]],
+        password:[null, [Validators.required]],
         confirmPassword: [null, [Validators.required]],
-    }, { validator: this.passwordMatchValidator })
+    },)
+
       
     }
 
-    passwordMatchValidator(formGroup:FormGroup){
-      const password = formGroup.get('password')?.value;
-      const confirmPassword = formGroup.get('confirmPassword')?.value;
-      if (password != confirmPassword) {
-        formGroup.get('confirmPassword')?.setErrors({ passwordMismatch: true });
-      } else {
-        formGroup.get('confirmPassword')?.setErrors(null);
-      }
-    }
 
     register(){
+      
+    const password = this.validateForm.get('password')?.value;
+    const confirmPassword = this.validateForm.get('confirmPassword')?.value;
+    if (password !== confirmPassword) {
+      this.toastr.error("Password is not match")
+      return;
+    }
       this.authService.register(this.validateForm.value).subscribe(
         (res)=>{
-        
+              this.router.navigateByUrl("/login")
         }, responseError=>{
-          console.log(responseError.error)
+          this.toastr.error(responseError.error)
         }
       )
     }

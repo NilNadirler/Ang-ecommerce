@@ -24,7 +24,7 @@ export class AuthServiceService {
      
     return this.http.post(BASIC_URL + "authenticate", {username,password},{observe: 'response'}).pipe(
       map((res:HttpResponse<any>)=>{
-
+         console.log(res)
         this.storageService.saveUserId(res.body.userId)
         this.storageService.saveUserRole(res.body.role);
         this.storageService.saveToken(res.body.token)

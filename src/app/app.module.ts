@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from 'src/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     AdminModule,
     UserModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
