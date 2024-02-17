@@ -2,32 +2,25 @@ import { throwDialogContentAlreadyAttachedError } from '@angular/cdk/dialog';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StorageService } from 'src/app/services/storage.service';
+import { StorageService } from '../services/storage.service';
 
 
-const BASIC_URL = "http://localhost:9091/api/admin/"
+
+const BASIC_URL="http://localhost:9091/api/customer/"
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminService {
+
+
+export class UserService {
+
+
+
 
   constructor(private http:HttpClient) { }
 
-  addCategory(categoryDto:any):Observable<any>{
-     
-    return this.http.post(BASIC_URL +"category", categoryDto,{
-         headers:this.createAuthorizationHeader()
-    })
-  }
-
-  addProduct(product:any):Observable<any>{
-     
-    return this.http.post(BASIC_URL +"product", product,{
-         headers:this.createAuthorizationHeader()
-    })
-  }
-
+  
   getAllProduct():Observable<any>{
      
     return this.http.get(BASIC_URL +"products",{
@@ -37,18 +30,31 @@ export class AdminService {
 
 
 
-  getAllCategory():Observable<any>{
-     
-    return this.http.get(BASIC_URL +"categories",{
-         headers:this.createAuthorizationHeader()
-    })
-  }
-
+ 
   getAllProductByName(name:any):Observable<any>{
     return this.http.get(BASIC_URL +`search/${name}`,{
       headers:this.createAuthorizationHeader()
     })
 
+  }
+
+  addToCart(productId:any):Observable<any>{
+     const cartDto ={
+       productId : productId,
+       userId : StorageService.getUser()
+     }
+
+     return this.http.post(BASIC_URL+"cart", cartDto,{
+      headers:this.createAuthorizationHeader()
+     })
+    
+  }
+
+  getCartByUserId():Observable<any>{
+    const userId = StorageService.getUser();
+    return this.http.get(BASIC_URL + `cart/${userId}`,{
+      headers: this.createAuthorizationHeader()
+    })
   }
 
 
