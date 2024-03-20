@@ -52,9 +52,11 @@ export class DashboardComponent {
    }
 
    addToCart(id:any){
-      this.userService.addToCart(id).subscribe(res=>{
-        console.log(res)
+      this.userService.addToCart(id).subscribe((res)=>{
+         console.log(res)
         this.toastr.success("Product added successfully")
+       
       })
+     
    }
 }

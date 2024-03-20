@@ -38,9 +38,9 @@ export class UserService {
 
   }
 
-  addToCart(productId:any):Observable<any>{
+  addToCart(id:any):Observable<any>{
      const cartDto ={
-       productId : productId,
+       productId : id,
        userId : StorageService.getUser()
      }
 
@@ -52,7 +52,7 @@ export class UserService {
 
   getCartByUserId():Observable<any>{
     const userId = StorageService.getUser();
-    return this.http.get(BASIC_URL + `cart/${userId}`,{
+    return this.http.get(BASIC_URL+`cart/${userId}`,{
       headers: this.createAuthorizationHeader()
     })
   }
