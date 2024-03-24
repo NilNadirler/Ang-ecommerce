@@ -1,0 +1,15 @@
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    max-width: 600px;
+}
+
+h2{
+    text-align: center;
+}
+button{
+    align-self: center;
+}

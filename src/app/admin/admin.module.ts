@@ -8,13 +8,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostProductComponent } from './components/post-product/post-product.component';
+import { PostCouponComponent } from './components/post-coupon/post-coupon.component';
+import { CouponsComponent } from './components/coupons/coupons.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     CategoryComponent,
-    PostProductComponent
+    PostProductComponent,
+    PostCouponComponent,
+    CouponsComponent
   ],
   imports: [
     CommonModule,

@@ -28,6 +28,21 @@ export class AdminService {
     })
   }
 
+  addCoupon(coupon:any):Observable<any>{
+     
+    return this.http.post(BASIC_URL +"coupons", coupon,{
+         headers:this.createAuthorizationHeader()
+    })
+  }
+
+  
+  getAllCoupons():Observable<any>{
+     
+    return this.http.get(BASIC_URL +"coupons",{
+         headers:this.createAuthorizationHeader()
+    })
+  }
+
   getAllProduct():Observable<any>{
      
     return this.http.get(BASIC_URL +"products",{

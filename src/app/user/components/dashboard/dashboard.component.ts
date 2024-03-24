@@ -47,11 +47,13 @@ export class DashboardComponent {
           console.log(element)
           element.processedImg = 'data:image/jpeg;base64,'+ element.byteImg
            this.products.push(element);
+
         });
     })
    }
 
    addToCart(id:any){
+     console.log(id)
       this.userService.addToCart(id).subscribe((res)=>{
          console.log(res)
         this.toastr.success("Product added successfully")

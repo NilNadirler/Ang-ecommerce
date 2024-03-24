@@ -16,8 +16,6 @@ const BASIC_URL="http://localhost:9091/api/customer/"
 export class UserService {
 
 
-
-
   constructor(private http:HttpClient) { }
 
   
@@ -46,9 +44,16 @@ export class UserService {
 
      return this.http.post(BASIC_URL+"cart", cartDto,{
       headers:this.createAuthorizationHeader()
-     })
-    
+     })  
   }
+
+  applyCoupon(code: any):Observable<any> {
+    const userId = StorageService.getUser();
+     return this.http.get(BASIC_URL+`applyCoupon/${userId}/${code}`,{
+      headers:this.createAuthorizationHeader()
+     }
+     )}
+
 
   getCartByUserId():Observable<any>{
     const userId = StorageService.getUser();
@@ -57,6 +62,35 @@ export class UserService {
     })
   }
 
+  increaseQuantity(productId: any):Observable<any> {
+    const cartDto ={
+      productId : productId,
+      userId : StorageService.getUser()
+    }
+
+    return this.http.post(BASIC_URL+"increaseQuantity", cartDto,{
+     headers:this.createAuthorizationHeader()
+    })  ;
+  }
+
+  decreaseQuantity(productId: any):Observable<any> {
+    const cartDto ={
+      productId : productId,
+      userId : StorageService.getUser()
+    }
+
+    return this.http.post(BASIC_URL+"decreaseQuantity", cartDto,{
+     headers:this.createAuthorizationHeader()
+    })  ;
+  }
+
+  placeOrder(orderDto: any):Observable<any> {
+    orderDto.userId = StorageService.getUser();
+     return this.http.get(BASIC_URL+`applyCoupon`+orderDto ,{
+      headers:this.createAuthorizationHeader()
+     }
+     )}
+   
 
 
   private createAuthorizationHeader():HttpHeaders{
