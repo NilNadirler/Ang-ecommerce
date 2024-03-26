@@ -7,12 +7,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/shared.module';
 import { CartComponent } from './components/cart/cart.component';
+import { PlaceOrderComponent } from './components/place-order/place-order.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    CartComponent
+    CartComponent,
+    PlaceOrderComponent,
+    MyOrdersComponent
   ],
   imports: [
     CommonModule,

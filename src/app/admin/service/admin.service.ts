@@ -43,6 +43,14 @@ export class AdminService {
     })
   }
 
+    
+  getPlacedOrder():Observable<any>{
+     
+    return this.http.get(BASIC_URL +"placedOrders",{
+         headers:this.createAuthorizationHeader()
+    })
+  }
+
   getAllProduct():Observable<any>{
      
     return this.http.get(BASIC_URL +"products",{
@@ -63,7 +71,22 @@ export class AdminService {
     return this.http.get(BASIC_URL +`search/${name}`,{
       headers:this.createAuthorizationHeader()
     })
+  }
 
+
+
+  changeOrderStatus(orderId: number, status: string):Observable<any> {
+    return this.http.get(BASIC_URL+`order/${orderId}/${status}`,{
+      headers:this.createAuthorizationHeader()
+    }) 
+  }
+    
+
+  postFAQ(productId:any, faqDto:any):Observable<any>{
+     console.log(faqDto)
+    return this.http.post(BASIC_URL +`faq/${productId}`,faqDto,{
+         headers:this.createAuthorizationHeader()
+    })
   }
 
 

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { UserService } from '../../user.service';
+import { PlaceOrderComponent } from '../place-order/place-order.component';
 
 @Component({
   selector: 'app-cart',
@@ -69,6 +70,10 @@ export class CartComponent {
         this.getCart();
       })
      
+    }
+
+    placeOrder(){
+      this.matDialog.open(PlaceOrderComponent)
     }
 
 }

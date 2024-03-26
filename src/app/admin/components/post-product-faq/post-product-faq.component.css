@@ -1,0 +1,37 @@
+.container{
+    max-width: 600px;
+    margin: 0 auto;
+    padding:20px;
+    margin-top: 90px;
+
+
+
+}
+
+h2{
+    text-align: center;
+}
+
+.form-field{
+
+    align-self: center; 
+
+}
+form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+    
+  
+}
+
+mat-form-field{
+         margin-bottom: 20px;
+  
+}
+
+button{
+    align-self: center; 
+
+}

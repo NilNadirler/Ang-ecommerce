@@ -86,12 +86,20 @@ export class UserService {
 
   placeOrder(orderDto: any):Observable<any> {
     orderDto.userId = StorageService.getUser();
-     return this.http.get(BASIC_URL+`applyCoupon`+orderDto ,{
+    console.log(orderDto)
+     return this.http.post(BASIC_URL+`placeOrder`,orderDto, {
       headers:this.createAuthorizationHeader()
      }
      )}
    
 
+     getOrderByUserId():Observable<any>{
+      const userId = StorageService.getUser();
+      return this.http.get(`http://localhost:9091/api/admin/myOrders/${userId}`,{
+        headers: this.createAuthorizationHeader()
+      })
+    }
+  
 
   private createAuthorizationHeader():HttpHeaders{
     return new HttpHeaders().set(
