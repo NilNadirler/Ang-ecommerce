@@ -9,6 +9,9 @@ import { SharedModule } from 'src/shared.module';
 import { CartComponent } from './components/cart/cart.component';
 import { PlaceOrderComponent } from './components/place-order/place-order.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { ViewOrderProductComponent } from './components/view-order-product/view-order-product.component';
+import { ReviewOrderedProductComponent } from './components/review-ordered-product/review-ordered-product.component';
+import { ViewProductDetailComponent } from './components/view-product-detail/view-product-detail.component';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
     DashboardComponent,
     CartComponent,
     PlaceOrderComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    ViewOrderProductComponent,
+    ReviewOrderedProductComponent,
+    ViewProductDetailComponent
   ],
   imports: [
     CommonModule,

@@ -99,6 +99,28 @@ export class UserService {
         headers: this.createAuthorizationHeader()
       })
     }
+
+    getOrderedProducts(orderId:any):Observable<any>{
+      return this.http.get(BASIC_URL + `ordered-product/${orderId}`,{
+        headers: this.createAuthorizationHeader()
+      })
+    }
+
+    getProductById(productId:any):Observable<any>{
+      return this.http.get(BASIC_URL + `product/${productId}`,{
+        headers: this.createAuthorizationHeader()
+      })
+    }
+
+
+    
+  giveReview(reviewDto: FormData):Observable<any> {
+    console.log(reviewDto)
+     return this.http.post(BASIC_URL+`review`,reviewDto, {
+      headers:this.createAuthorizationHeader()
+     }
+     )}
+   
   
 
   private createAuthorizationHeader():HttpHeaders{

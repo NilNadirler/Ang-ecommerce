@@ -13,12 +13,13 @@ import { UserModule } from './user/user.module';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from 'src/shared.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
