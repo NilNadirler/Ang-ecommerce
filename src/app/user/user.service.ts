@@ -120,6 +120,19 @@ export class UserService {
       headers:this.createAuthorizationHeader()
      }
      )}
+
+     addProductToWishList(wishListDto: any):Observable<any> {
+       return this.http.post(BASIC_URL+`wishList`,wishListDto, {
+        headers:this.createAuthorizationHeader()
+       }
+       )}
+
+       getWishListByUserId():Observable<any>{
+        const userId = StorageService.getUser();
+        return this.http.get(BASIC_URL+`wishList/${userId}`,{
+          headers: this.createAuthorizationHeader()
+        })
+      }
    
   
 

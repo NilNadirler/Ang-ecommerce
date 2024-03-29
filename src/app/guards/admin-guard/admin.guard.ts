@@ -22,6 +22,10 @@ export class AdminGuard implements CanActivate {
       StorageService.signOut();
       this.router.navigateByUrl("/login");
       this.toastr.error("You are not logged in. Please login first")
+    }else if(StorageService.expireToken()){
+      StorageService.signOut();
+      this.router.navigateByUrl("/login");
+      this.toastr.error("You are not logged in. Please login first")
     }
 
     return true;

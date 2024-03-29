@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from 'src/shared.module';
+import { DatePipe } from '@angular/common';
+
 
 
 @NgModule({
@@ -31,9 +33,12 @@ import { SharedModule } from 'src/shared.module';
     AdminModule,
     UserModule,
     ToastrModule.forRoot(),
-    SharedModule
+    SharedModule,
+ 
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

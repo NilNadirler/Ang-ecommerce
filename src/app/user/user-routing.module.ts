@@ -7,6 +7,7 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ReviewOrderedProductComponent } from './components/review-ordered-product/review-ordered-product.component';
 import { ViewOrderProductComponent } from './components/view-order-product/view-order-product.component';
 import { ViewProductDetailComponent } from './components/view-product-detail/view-product-detail.component';
+import { ViewWishListComponent } from './components/view-wish-list/view-wish-list.component';
 
 const routes: Routes = [
   {path:"dashboard", component:DashboardComponent, canActivate: [UserGuard]},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:"ordered_product/:orderId", component:ViewOrderProductComponent, canActivate: [UserGuard]},
   {path:"review/:productId", component:ReviewOrderedProductComponent, canActivate: [UserGuard]},
   {path:"product/:productId", component:ViewProductDetailComponent, canActivate: [UserGuard]},
+  {path:"wishlist", component:ViewWishListComponent, canActivate: [UserGuard]},
 ];
 
 @NgModule({

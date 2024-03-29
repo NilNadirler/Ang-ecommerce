@@ -18,12 +18,16 @@ export class UserGuard implements CanActivate {
         this.router.navigateByUrl("/admin/dashboard")
         this.toastr.error("You dont access of this page")
         return false;
-      }else if(!StorageService.hasToken()){
+      }if(!StorageService.hasToken()){
         StorageService.signOut();
         this.router.navigateByUrl("/login");
         this.toastr.error("You are not logged in. Please login first")
-      }
-    return true;
+      }if(StorageService.expireToken()){
+        StorageService.signOut();
+        this.router.navigateByUrl("/login");
+        this.toastr.error("You are not logged in. Please login first")
+    
   }
-  
-}
+  return true;
+    }
+  }

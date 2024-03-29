@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -23,17 +24,22 @@ export class LoginComponent {
       username:[null,[Validators.required]],
       password:[null, [Validators.required]]
     })
+ 
   }
 
 
 
   login(){
-    this.authService.login(this.loginForm.get(['username'])!.value,this.loginForm.get(['password']!)?.value).subscribe((res)=>{
+    this.authService.login(this.loginForm.get(['username']!)?.value,this.loginForm.get(['password']!)?.value).subscribe((res)=>{
      if(StorageService.isAdminLoggedIn()){
        this.router.navigateByUrl("/admin/dashboard")
      }else if(StorageService.isUserLoggedIn()){
       this.router.navigateByUrl("/user/dashboard")
+  
      }
+    
+     
+    
     },(responseError)=>{
         console.log(responseError.error.message)
         if(responseError.status == 403){

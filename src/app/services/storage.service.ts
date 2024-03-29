@@ -1,4 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -6,12 +11,12 @@ import { Injectable } from '@angular/core';
 export class StorageService {
 
 
-
   
-  constructor() { }
+  constructor(private datePipe:DatePipe) { }
 
   saveToken(token: any) {
     window.localStorage.setItem("token",token)
+    
   }
   saveUserRole(role: any) {
     window.localStorage.setItem("role",role)
@@ -20,8 +25,30 @@ export class StorageService {
     window.localStorage.setItem("userId",userId)
   }
 
+   validateToken(tokenValidate: any) {
+  
+     window.localStorage.setItem("expirationDate", tokenValidate);
+  }
+
+  static expireToken():boolean{
+  const dateString = localStorage.getItem("expirationDate");
+  const tokenDate = moment(dateString).toDate();
+  console.log(dateString)
+  console.log(tokenDate.getTime())
+  console.log(Date.now())
+  console.log(Date.now()> tokenDate.getTime())
+
+  if(Date.now()> tokenDate.getTime())
+      return true;
+      else{
+        return false;
+      }
+
+ }
+
 
   static hasToken() :boolean{
+  
     if(this.getToken()===null){
       return false;
     }
@@ -39,9 +66,13 @@ export class StorageService {
     return localStorage.getItem("userId")
   }
 
-
+  static getValidateToken(){
+    return localStorage.getItem("expirationDate");
+  
+  }
 
   static isUserLoggedIn():boolean {
+    
    if(this.getToken() ===null){
      return false;
    }
@@ -67,5 +98,5 @@ export class StorageService {
    }
 
 
+  }
 
-}

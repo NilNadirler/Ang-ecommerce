@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -8,7 +9,7 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class NoAuthGuard implements CanActivate {
 
-   constructor(private router:Router){}
+   constructor(private router:Router,private toastr:ToastrService){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -18,7 +19,11 @@ export class NoAuthGuard implements CanActivate {
   
    }else if(StorageService.hasToken() && StorageService.isAdminLoggedIn()){
     this.router.navigateByUrl("/admin/dashboard")
-   }
+   }if(!StorageService.expireToken){
+    StorageService.signOut();
+    this.router.navigateByUrl("/login");
+    this.toastr.error("You are not logged in. Please login first")
+  }
    return true; 
   }
   

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from '../../user.service';
 
 @Component({
@@ -34,5 +35,22 @@ export class ViewProductDetailComponent {
           console.log(res)
         });
       })
+    }
+
+    addToWishList(){
+      const wishListDto = {
+        productId: this.productId,
+        userId: StorageService.getUser()
+      }
+       this.userService.addProductToWishList(wishListDto).subscribe(res=>{
+         console.log(res)
+        if(res !== null){
+          this.toastr.success("Product Added WishList Successfully")
+        }if(res==null){
+          this.toastr.error("Already in wishList")
+        }
+          
+        
+      });
     }
 }

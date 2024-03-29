@@ -1,0 +1,9 @@
+.center-container{
+    display: flex;
+    justify-content:flex-start;
+    gap: 20px;
+}
+
+.product-card{
+    margin: 20px;
+}
